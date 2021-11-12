@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface RetrofitService {
 
     @GET("/posts")
-    fun getUsers(): Call<User>
+    fun getUsers(): Call<MutableList<User>>
 }
