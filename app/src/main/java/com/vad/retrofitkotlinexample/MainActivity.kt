@@ -32,7 +32,12 @@ class MainActivity() : AppCompatActivity() {
     fun getUsers() {
         retrofitService.getUsers().enqueue(object : Callback<MutableList<User>> {
             override fun onResponse(call: Call<MutableList<User>>, response: Response<MutableList<User>>) {
-                response.body()?.toList()?.map { textViewUsers.text = it.toString() }
+                var result = ""
+                response.body()?.toList()?.forEach {
+                    result += "${it.id} ${it.title} ${it.body} \n"
+                }
+
+                textViewUsers.text = result
             }
 
             override fun onFailure(call: Call<MutableList<User>>, t: Throwable) {
