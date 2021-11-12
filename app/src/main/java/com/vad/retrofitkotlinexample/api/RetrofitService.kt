@@ -1,18 +1,11 @@
 package com.vad.retrofitkotlinexample.api
 
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.vad.retrofitkotlinexample.entity.User
+import retrofit2.Call
+import retrofit2.http.GET
 
-class RetrofitService {
-    private var retrofit: Retrofit? = null
+interface RetrofitService {
 
-    fun getClient(baseUrl: String): Retrofit {
-        if (retrofit == null) {
-            retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
-
-        return retrofit!!
-    }
+    @GET("/posts")
+    fun getUsers(): Call<User>
 }
