@@ -26,7 +26,7 @@ class MainActivity() : AppCompatActivity() {
     }
 
     fun onGetRequest(view: View) {
-
+        getUsers()
     }
 
     fun getUsers() {
