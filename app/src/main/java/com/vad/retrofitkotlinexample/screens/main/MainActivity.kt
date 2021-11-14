@@ -1,21 +1,20 @@
-package com.vad.retrofitkotlinexample
+package com.vad.retrofitkotlinexample.screens.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vad.retrofitkotlinexample.R
 import com.vad.retrofitkotlinexample.api.RetrofitService
 import com.vad.retrofitkotlinexample.common.Common
 import com.vad.retrofitkotlinexample.entity.User
+import com.vad.retrofitkotlinexample.screens.adapter.UsersAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     lateinit var retrofitService: RetrofitService
     lateinit var myRecycler: RecyclerView
@@ -32,7 +31,7 @@ class MainActivity() : AppCompatActivity() {
         getUsers()
     }
 
-    fun getUsers() {
+    private fun getUsers() {
         retrofitService.getUsers().enqueue(object : Callback<MutableList<User>> {
             override fun onResponse(call: Call<MutableList<User>>, response: Response<MutableList<User>>) {
                 myRecycler.adapter = response.body()?.let { UsersAdapter(it.toList()) }
