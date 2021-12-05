@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,11 +45,11 @@ class ListFragment : Fragment() {
                 call: Call<MutableList<User>>,
                 response: Response<MutableList<User>>
             ) {
-                var adapter: UsersAdapter? = response.body()?.let { UsersAdapter(it) }
+                var adapter = response.body()?.let { UsersAdapter(it) }
                 myRecycler.adapter = adapter
                 adapter?.setOnItemClickListener(object : UsersAdapter.OnItemClickListener{
-                    override fun onItemClickListener(position: Int) {
-                        TODO("Not yet implemented")
+                    override fun onItemClick(position: Int) {
+                        Toast.makeText(activity, response.body()?.get(position)?.title, Toast.LENGTH_SHORT).show()
                     }
 
                 })
