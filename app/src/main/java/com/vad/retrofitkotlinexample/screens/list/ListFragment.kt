@@ -44,7 +44,14 @@ class ListFragment : Fragment() {
                 call: Call<MutableList<User>>,
                 response: Response<MutableList<User>>
             ) {
-                myRecycler.adapter = response.body()?.toList()?.let { UsersAdapter(it) }
+                var adapter: UsersAdapter? = response.body()?.let { UsersAdapter(it) }
+                myRecycler.adapter = adapter
+                adapter?.setOnItemClickListener(object : UsersAdapter.OnItemClickListener{
+                    override fun onItemClickListener(position: Int) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
             }
 
             override fun onFailure(call: Call<MutableList<User>>, t: Throwable) {
