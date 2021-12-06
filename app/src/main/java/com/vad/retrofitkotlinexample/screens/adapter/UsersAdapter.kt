@@ -3,6 +3,7 @@ package com.vad.retrofitkotlinexample.screens.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vad.retrofitkotlinexample.R
@@ -10,20 +11,20 @@ import com.vad.retrofitkotlinexample.entity.User
 
 class UsersAdapter(private val users: List<User>) : RecyclerView.Adapter<UsersAdapter.MyViewHolder>() {
 
-    private lateinit var mListener: OnItemClickListener
+    lateinit var mItemClickListener: OnItemClickListener
 
     interface OnItemClickListener {
-        fun onItemClickListener(position: Int)
+        fun onItemClick(position: Int)
     }
 
-    fun onItemClickListener(listener: OnItemClickListener) {
-        mListener = listener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mItemClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.user_item, parent, false)
-        return MyViewHolder(itemView, mListener)
+        return MyViewHolder(itemView, mItemClickListener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -42,8 +43,8 @@ class UsersAdapter(private val users: List<User>) : RecyclerView.Adapter<UsersAd
         init {
             id = itemView.findViewById(R.id.textViewId)
             title = itemView.findViewById(R.id.textViewTitle)
-            itemView.setOnClickListener{
-                listener.onItemClickListener(adapterPosition)
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
             }
         }
     }
