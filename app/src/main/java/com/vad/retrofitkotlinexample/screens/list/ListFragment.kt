@@ -49,7 +49,7 @@ class ListFragment : Fragment() {
                 myRecycler.adapter = adapter
                 adapter?.setOnItemClickListener(object : UsersAdapter.OnItemClickListener{
                     override fun onItemClick(position: Int) {
-                        Toast.makeText(activity, response.body()?.get(position)?.title, Toast.LENGTH_SHORT).show()
+
                     }
 
                 })
@@ -60,6 +60,17 @@ class ListFragment : Fragment() {
             }
 
         })
+    }
+
+    fun openFragment(fragment: Fragment, saveData: Bundle) {
+        fragment.apply {
+            arguments = saveData
+        }
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        transaction?.replace(R.id.fragment_container, fragment)
+        transaction?.disallowAddToBackStack()
+        transaction?.commit()
     }
 
 
