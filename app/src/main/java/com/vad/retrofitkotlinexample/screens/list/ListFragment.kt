@@ -13,6 +13,7 @@ import com.vad.retrofitkotlinexample.api.RetrofitService
 import com.vad.retrofitkotlinexample.common.Common
 import com.vad.retrofitkotlinexample.entity.User
 import com.vad.retrofitkotlinexample.screens.adapter.UsersAdapter
+import com.vad.retrofitkotlinexample.screens.detail.DetailFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,7 +50,11 @@ class ListFragment : Fragment() {
                 myRecycler.adapter = adapter
                 adapter?.setOnItemClickListener(object : UsersAdapter.OnItemClickListener{
                     override fun onItemClick(position: Int) {
-
+                        val fragment = DetailFragment()
+                        var id = response.body()?.get(position)?.id
+                        val title = response.body()?.get(position)?.title
+                        val body = response.body()?.get(position)?.body
+                        openFragment(fragment, saveData(id, title, body))
                     }
 
                 })
@@ -60,6 +65,12 @@ class ListFragment : Fragment() {
             }
 
         })
+    }
+
+    fun saveData(userId: Int?, title: String?, body: String?) = Bundle().apply {
+        userId?.let { putInt("id", it) }
+        putString("title", title)
+        putString("body", body)
     }
 
     fun openFragment(fragment: Fragment, saveData: Bundle) {
