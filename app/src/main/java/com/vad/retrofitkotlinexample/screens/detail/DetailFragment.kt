@@ -10,8 +10,6 @@ import com.vad.retrofitkotlinexample.R
 
 class DetailFragment : Fragment() {
 
-    private var userId: String =""
-
     private lateinit var userIdTextView: TextView
     private lateinit var titleTextView: TextView
     private lateinit var bodyTextView: TextView
@@ -23,12 +21,10 @@ class DetailFragment : Fragment() {
     ): View? {
         var view: View = inflater.inflate(R.layout.detail_fragment, container, false)
         userIdTextView = view.findViewById(R.id.textViewIdUser)
-        titleTextView = view.findViewById(R.id.textViewTitle)
+        titleTextView = view.findViewById(R.id.textViewTitleDetail)
         bodyTextView = view.findViewById(R.id.textViewBody)
 
-        arguments?.getString("id")?.let { userId = it }
-
-        userIdTextView.text = userId
+        userIdTextView.text = arguments?.getString("id").toString()
         titleTextView.text = arguments?.getString("title").toString()
         bodyTextView.text = arguments?.getString("body").toString()
         return view
