@@ -8,6 +8,11 @@ import androidx.fragment.app.Fragment
 import com.vad.retrofitkotlinexample.R
 
 class DetailFragment : Fragment() {
+
+    private var userId: String =""
+    private var title: String = ""
+    private var body: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
