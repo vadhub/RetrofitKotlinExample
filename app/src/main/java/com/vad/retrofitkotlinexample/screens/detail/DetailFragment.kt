@@ -20,13 +20,14 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view: View = inflater.inflate(R.layout.detail_fragment, container, false)
+
         userIdTextView = view.findViewById(R.id.textViewIdUser)
         titleTextView = view.findViewById(R.id.textViewTitleDetail)
         bodyTextView = view.findViewById(R.id.textViewBody)
 
-        userIdTextView.text = arguments?.getString("id").toString()
-        titleTextView.text = arguments?.getString("title").toString()
-        bodyTextView.text = arguments?.getString("body").toString()
+        userIdTextView.text = arguments?.getInt("id").toString()
+        titleTextView.text = arguments?.getString("title")
+        bodyTextView.text = arguments?.getString("body")
         return view
     }
 }
