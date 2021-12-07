@@ -15,25 +15,23 @@ class DetailFragment : Fragment() {
     private lateinit var titleTextView: TextView
     private lateinit var bodyTextView: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        activity?.actionBar?.title = arguments?.getInt("id").toString()
-
         var view: View = inflater.inflate(R.layout.detail_fragment, container, false)
+
+        println(activity?.supportFragmentManager?.backStackEntryCount)
+
+        activity?.title = arguments?.getInt("id").toString()
 
         userIdTextView = view.findViewById(R.id.textViewIdUser)
         titleTextView = view.findViewById(R.id.textViewTitleDetail)
         bodyTextView = view.findViewById(R.id.textViewBody)
 
-        //userIdTextView.text = arguments?.getInt("id").toString()
+        userIdTextView.text = ""
         titleTextView.text = arguments?.getString("title")
         bodyTextView.text = arguments?.getString("body")
         return view

@@ -9,9 +9,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(R.layout.activity_main)
-
-
         supportFragmentManager
             .beginTransaction()
             .addToBackStack("listFragment")
@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        if(supportFragmentManager.backStackEntryCount != 0) supportFragmentManager.popBackStack()
+        supportFragmentManager.popBackStack()
+        println(supportFragmentManager.backStackEntryCount)
     }
 
 
