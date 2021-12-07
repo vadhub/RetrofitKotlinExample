@@ -11,12 +11,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+
         supportFragmentManager
             .beginTransaction()
             .addToBackStack("listFragment")
             .replace(R.id.fragment_container, ListFragment())
             .commit()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(supportFragmentManager.backStackEntryCount != 0) supportFragmentManager.popBackStack()
     }
 
 
