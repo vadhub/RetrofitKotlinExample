@@ -10,6 +10,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ListFragment()).commit()
+
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack("listFragment")
+            .replace(R.id.fragment_container, ListFragment())
+            .commit()
     }
+
+
 }

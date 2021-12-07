@@ -80,7 +80,7 @@ class ListFragment : Fragment() {
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         transaction?.replace(R.id.fragment_container, fragment)
-        transaction?.disallowAddToBackStack()
+        transaction?.addToBackStack("detailFragment")
         transaction?.commit()
     }
 
