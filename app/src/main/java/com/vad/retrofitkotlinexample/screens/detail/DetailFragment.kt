@@ -24,8 +24,6 @@ class DetailFragment : Fragment(), HasTitle {
 
         var view: View = inflater.inflate(R.layout.detail_fragment, container, false)
 
-        println(activity?.supportFragmentManager?.backStackEntryCount)
-
         userIdTextView = view.findViewById(R.id.textViewIdUser)
         titleTextView = view.findViewById(R.id.textViewTitleDetail)
         bodyTextView = view.findViewById(R.id.textViewBody)

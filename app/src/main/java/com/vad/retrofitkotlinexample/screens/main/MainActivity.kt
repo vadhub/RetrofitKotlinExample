@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (supportFragmentManager.backStackEntryCount > 0) {
+            print(""+supportFragmentManager.backStackEntryCount)
             actionBar?.setDisplayHomeAsUpEnabled(true)
             actionBar?.setDisplayHomeAsUpEnabled(true)
         } else {
@@ -52,8 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .addToBackStack("listFragment")
-            .replace(R.id.fragment_container, ListFragment())
+            .add(R.id.fragment_container, ListFragment())
             .commit()
     }
 
